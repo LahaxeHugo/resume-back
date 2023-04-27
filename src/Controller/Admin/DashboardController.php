@@ -13,6 +13,7 @@ use App\Entity\Skill;
 use App\Entity\Diploma;
 use App\Entity\Experience;
 use App\Entity\ExperienceDetail;
+use App\Entity\Project;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -37,10 +38,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Skills', 'fa fa-book', Skill::class);
 
         yield MenuItem::linkToCrud('Diplomas', 'fa fa-graduation-cap', Diploma::class);
-
+        
         yield MenuItem::subMenu('Experiences', 'fa fa-upload')->setSubItems([
             MenuItem::linkToCrud('Items', 'fa fa-paperclip', Experience::class),
             MenuItem::linkToCrud('Details', 'fa fa-bars', ExperienceDetail::class)
         ]);
+
+        yield MenuItem::linkToCrud('Projects', 'fa fa-graduation-cap', Project::class);
     }
 }
