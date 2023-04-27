@@ -1,42 +1,102 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+	<form class="login-form" method="post">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+		<h1>Login</h1>
+		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="email" autocomplete="email" placeholder="Email" required autofocus>
+		<input type="password" name="password" id="inputPassword" autocomplete="password" class="password" placeholder="Password" required>
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+		<button class="login" type="submit">Login</button>
+	</form>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+	<style>
+		body {
+			background-color: #181818;
+            font-family: Roboto, sans-serif;
+		}
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.register {
+			display: block;
+			width: 80%;
+			margin: 13px auto auto;
+			line-height: 35px;
+			height: 40px;
+			border: none;
+			color: white;
+			font-weight: 300;
+		}
+		.login-form {
+			text-align: center;
+			font-weight: 500;
+			width: 300px;
+			min-height: 340px;
+			border: 1px solid #404040;
+			background-color: #222222;
+			padding: 50px 11px 11px;
+			border-radius: 5px;
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			box-shadow: 0px 0px 9px 2px #0000006e
+		}
+		h1 {
+			text-align: center;
+			margin-bottom: 50px;
+			color: #ffffffd4;
+		}
+		h1::before {
+    		content: '';
+    		background-color: #007bff;
+    		padding: 2px;
+   			 margin-right: 18px;
+		}
+		input {
+			color: #e6e6e6;
+			margin: auto auto 20px;
+			background-color: transparent;
+			border: none;
+			border-bottom: 1px solid #ffffff24;
+			width: 80%;
+			font-size: 12px;
+			height: 40px;
+			border-radius: 0;
+			padding: 0.375rem 0.75rem;
+		}
+		input:-webkit-autofill,
+		input:-webkit-autofill:hover,
+		input:-webkit-autofill:focus {
+			-webkit-text-fill-color: #e6e6e6;
+			transition: background-color 50000s ease-in-out 0s;
+		}
+		input:focus {
+			box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+		}
+		input:focus-visible {
+			outline: 0;
+		}
+		.login {
+			margin: auto;
+			width: 80%;
+			height: 40px;
+			border: none;
+			background-color: #007bff;
+    		transition: background-color 0.5s ease-out;
+			color: white;
+			border-radius: 40Px;
+		}
+		.login:hover {
+			transition: 0.3s;
+			background-color: #1e1e1e;
+		}
+	</style>
 {% endblock %}
