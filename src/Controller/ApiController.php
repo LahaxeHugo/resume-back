@@ -49,4 +49,19 @@ class ApiController extends AbstractController
 
         return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
+
+    #[Route('/contact', name: 'api_contact')]
+    public function contact(SiteDetailRepository $siteDetailRepository): Response {
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()]; 
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $jsonObject = $this->serializer->serialize(
+            ['site_details' => $siteDetailRepository->findBy(['type' => 'contact'])], 
+            'json', 
+            ['circular_reference_handler' => function ($object) {return $object->getId(); }
+        ]);
+
+        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
+    }
 }
