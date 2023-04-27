@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\SiteDetail;
+use App\Entity\Diploma;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -28,5 +29,6 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Site Details', 'fa fa-sliders', SiteDetail::class);
+        yield MenuItem::linkToCrud('Diplomas', 'fa fa-graduation-cap', Diploma::class);
     }
 }
