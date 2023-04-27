@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\SiteDetail;
 use App\Entity\Diploma;
+use App\Entity\Experience;
+use App\Entity\ExperienceDetail;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -30,5 +32,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Site Details', 'fa fa-sliders', SiteDetail::class);
         yield MenuItem::linkToCrud('Diplomas', 'fa fa-graduation-cap', Diploma::class);
+
+        yield MenuItem::subMenu('Experiences', 'fa fa-upload')->setSubItems([
+            MenuItem::linkToCrud('Items', 'fa fa-paperclip', Experience::class),
+            MenuItem::linkToCrud('Details', 'fa fa-bars', ExperienceDetail::class)
+        ]);
     }
 }
