@@ -15,6 +15,7 @@ use App\Repository\SiteDetailRepository;
 use App\Repository\SkillRepository;
 use App\Repository\DiplomaRepository;
 use App\Repository\ExperienceRepository;
+use App\Repository\ProjectRepository;
 
 class ApiController extends AbstractController
 {
@@ -57,7 +58,22 @@ class ApiController extends AbstractController
         $serializer = new Serializer($normalizers, $encoders);
 
         $jsonObject = $this->serializer->serialize(
-            ['site_details' => $siteDetailRepository->findBy(['type' => 'contact'])], 
+            [$siteDetailRepository->findBy(['type' => 'contact'])], 
+            'json', 
+            ['circular_reference_handler' => function ($object) {return $object->getId(); }
+        ]);
+
+        return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
+    }
+
+    #[Route('/project', name: 'api_project')]
+    public function project(ProjectRepository $projectRepository): Response {
+        $encoders = [new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()]; 
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $jsonObject = $this->serializer->serialize(
+            [$projectRepository->findAll()], 
             'json', 
             ['circular_reference_handler' => function ($object) {return $object->getId(); }
         ]);
