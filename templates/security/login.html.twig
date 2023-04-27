@@ -23,16 +23,6 @@
 			padding: 0;
 			box-sizing: border-box;
 		}
-		.register {
-			display: block;
-			width: 80%;
-			margin: 13px auto auto;
-			line-height: 35px;
-			height: 40px;
-			border: none;
-			color: white;
-			font-weight: 300;
-		}
 		.login-form {
 			text-align: center;
 			font-weight: 500;
@@ -92,11 +82,25 @@
 			background-color: #007bff;
     		transition: background-color 0.5s ease-out;
 			color: white;
-			border-radius: 40Px;
+			border-radius: 40px;
+			margin-bottom: 2rem;
 		}
 		.login:hover {
 			transition: 0.3s;
 			background-color: #1e1e1e;
+		}
+
+		.alert {
+			position: relative;
+			padding: 0.75rem 1.25rem;
+			margin-bottom: 2rem;
+			border: 1px solid transparent;
+			border-radius: 0.25rem;
+		}
+		.alert-danger {
+			color: #721c24;
+			background-color: #f8d7da;
+			border-color: #f5c6cb;
 		}
 	</style>
 {% endblock %}
