@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\SiteDetail;
+use App\Entity\Skill;
 use App\Entity\Diploma;
 use App\Entity\Experience;
 use App\Entity\ExperienceDetail;
@@ -30,7 +31,11 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+
         yield MenuItem::linkToCrud('Site Details', 'fa fa-sliders', SiteDetail::class);
+
+        yield MenuItem::linkToCrud('Skills', 'fa fa-book', Skill::class);
+
         yield MenuItem::linkToCrud('Diplomas', 'fa fa-graduation-cap', Diploma::class);
 
         yield MenuItem::subMenu('Experiences', 'fa fa-upload')->setSubItems([
