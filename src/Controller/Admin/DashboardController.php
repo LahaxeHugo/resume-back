@@ -39,11 +39,11 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToCrud('Diplomas', 'fa fa-graduation-cap', Diploma::class);
         
-        yield MenuItem::subMenu('Experiences', 'fa fa-upload')->setSubItems([
+        yield MenuItem::subMenu('Experiences', 'fa fa-landmark')->setSubItems([
             MenuItem::linkToCrud('Items', 'fa fa-paperclip', Experience::class),
             MenuItem::linkToCrud('Details', 'fa fa-bars', ExperienceDetail::class)
         ]);
 
-        yield MenuItem::linkToCrud('Projects', 'fa fa-graduation-cap', Project::class);
+        yield MenuItem::linkToCrud('Projects', 'fa fa-regular fa-floppy-disk', Project::class);
     }
 }
