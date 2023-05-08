@@ -44,13 +44,13 @@ class ApiController extends AbstractController
 
     #[Route('/contact', name: 'api_contact')]
     public function contact(SiteDetailRepository $siteDetailRepository): Response {
-        $jsonObject = $this->defaultSerialize([$this->remapOuput($siteDetailRepository->findBy(['type' => 'contact']))]);
+        $jsonObject = $this->defaultSerialize($this->remapOuput($siteDetailRepository->findBy(['type' => 'contact'])));
         return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
 
     #[Route('/project', name: 'api_project')]
     public function project(ProjectRepository $projectRepository): Response {
-        $jsonObject = $this->defaultSerialize([$this->remapOuput($projectRepository->findAll())]);
+        $jsonObject = $this->defaultSerialize($this->remapOuput($projectRepository->findAll()));
         return new Response($jsonObject, 200, ['Content-Type' => 'application/json']);
     }
 
